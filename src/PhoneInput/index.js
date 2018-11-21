@@ -1,25 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import inputFormatPhoneInit from './core';
 import './style.scss';
 
 class PhoneInput extends React.Component {
-  constructor (props) {
-    super(props);
-
-    this.state = {
-      innerValue: '',
-    };
-
-    this.inputCodeRef = null;
-    this.inputNumberRef = null;
-  }
-
   componentDidMount () {
-    inputFormatPhoneInit('US', '+13236288307', this.handleChange);
+    inputFormatPhoneInit(
+      this.props.initialCountry || '',
+      this.props.initialNumber || '',
+      this.handleChange);
   }
 
-  handleChange = (code, number) => {
-    console.log(code, number);
+  handleChange = (code, number, countryCode, countryName) => {
+    this.props.onChange(code + number, countryCode, countryName, code, number);
   };
 
   render () {
@@ -56,5 +49,11 @@ class PhoneInput extends React.Component {
     </div>;
   }
 }
+
+PhoneInput.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  initialCountry: PropTypes.string,
+  initialNumber: PropTypes.string,
+};
 
 export default PhoneInput;
