@@ -1,0 +1,201 @@
+$spacing-1: 12px;
+
+$number-font-size: 15px;
+
+$input-border-width: 1px;
+$input-border-color: lightblue;
+$input-border-radius: 3px;
+$input-padding-v: 2px;
+$input-padding-h: 4px;
+$input-height: 30px;
+$input-text-color: red;
+$input-background: lightgreen;
+$input-placeholder-color: rgba(0, 0, 0, .26);
+$dropdown-background: $input-background;
+$dropdown-item-text-color: blue;
+$dropdown-selected-item-background: lightblue;
+$dropdown-selected-item-text-color: red;
+
+$country-code-width: 60px;
+
+.phone-input-telegram {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  max-width: 300px;
+  margin: auto;
+  padding: $spacing-1;
+
+  &, & * {
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+  }
+
+  .login_form_group {
+    width: 100%;
+
+    .textfield-item {
+      position: relative;
+      padding: 0 0 $spacing-1;
+
+      input.form-control {
+        padding: $input-padding-v $input-padding-h;
+        width: 100%;
+        height: $input-height;
+        font-size: $number-font-size;
+        line-height: 1em;
+        font-weight: normal;
+        font-family: inherit;
+        background-color: $input-background;
+        border: $input-border-width solid $input-border-color;
+        border-radius: $input-border-radius;
+        color: $input-text-color;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .textfield-item-placeholder {
+      position: absolute;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: #{$input-border-width + $input-padding-v + 2} #{$input-border-width + $input-padding-h};
+      width: 100%;
+      height: calc(100% - #{$spacing-1});
+      font-size: $number-font-size;
+      line-height: 1em;
+      text-align: left;
+      color: $input-placeholder-color;
+      pointer-events: none;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .login_phone_field_wrap {
+      padding-top: $spacing-1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+
+      .login_code_field_wrap {
+        width: $country-code-width;
+        margin-right: $spacing-1;
+        display: inline-block;
+        vertical-align: top;
+
+        .textfield-item input.form-control {
+          text-align: center;
+        }
+      }
+
+      .login_number_field_wrap {
+        flex: 1;
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+
+    .login_country_field_wrap {
+      position: relative;
+
+      &.opened {
+        .login_country_search_wrap {
+          visibility: visible;
+          opacity: 1;
+        }
+
+        .login_country_select {
+          visibility: hidden;
+          opacity: 0;
+        }
+      }
+
+      .login_country_select {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0;
+        border: $input-border-width solid $input-border-color;
+        border-radius: $input-border-radius;
+        padding: $input-padding-v $input-padding-h;
+        background: $input-background;
+        font-size: $number-font-size;
+        line-height: 1em;
+        width: 100%;
+        height: $input-height;
+        text-align: left;
+        color: $input-placeholder-color;
+        cursor: pointer;
+        position: relative;
+
+        &.is-dirty {
+          color: $input-text-color;
+        }
+      }
+
+      .login_country_search_wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .login_country_search_results {
+        position: absolute;
+        margin: 0;
+        padding: 7px 0;
+        width: 100%;
+        max-height: 170px;
+        text-align: left;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, .15);
+        background: $dropdown-background;
+        border: $input-border-width solid $input-border-color;
+        border-radius: $input-border-radius;
+        overflow: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        z-index: 7;
+      }
+
+      .login_country_search_result {
+        font-size: 14px;
+        line-height: 18px;
+        padding: 4px 12px;
+        cursor: pointer;
+        color: $dropdown-item-text-color;
+
+        &.selected {
+          background: $dropdown-selected-item-background;
+          color: $dropdown-selected-item-text-color;
+        }
+
+        .prefix {
+          font-size: 13px;
+          line-height: 16px;
+          color: #a8a8a8;
+          padding-left: 8px;
+        }
+      }
+
+      .login_country_search_noresult {
+        color: #a8a8a8;
+        font-size: 14px;
+        line-height: 18px;
+        padding: 4px 12px;
+        cursor: pointer;
+      }
+    }
+  }
+}
