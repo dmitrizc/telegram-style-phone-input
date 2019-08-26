@@ -6,8 +6,8 @@ import './style.scss';
 class PhoneInput extends React.Component {
   componentDidMount () {
     inputFormatPhoneInit(
-      this.props.initialCountry || '',
-      this.props.initialNumber || '',
+      this.props.initialCountry,
+      this.props.initialNumber,
       this.handleChange);
   }
 
@@ -39,7 +39,7 @@ class PhoneInput extends React.Component {
           <div className="login_number_field_wrap">
             <div className="textfield-item" id="login-phone-textfield">
               <input type="tel" className="form-control" id="login-phone" autoComplete="off"/>
-              <label className="textfield-item-placeholder" id="login-phone-placeholder"
+              <span className="textfield-item-placeholder" id="login-phone-placeholder"
                      data-placeholder="Phone number"/>
               <span className="textfield-item-error login_form_message" id="login-alert"/>
             </div>
@@ -54,6 +54,11 @@ PhoneInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   initialCountry: PropTypes.string,
   initialNumber: PropTypes.string,
+};
+
+PhoneInput.defaultProps = {
+  initialCountry: '',
+  initialNumber: '',
 };
 
 export default PhoneInput;
